@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { RegistrionDataService } from "../services/registrion-data.service";
+import { RegistrionDataService } from "../services/registrion/registrion-data.service";
 
 @Component({
   selector: "app-registrion-data",

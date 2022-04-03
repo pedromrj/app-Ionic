@@ -1,4 +1,32 @@
 {
-  "profile": [{  "id": 1,"name": "Adriana Santos", "birthday": "25/10/1999", "cpf": "705.986.894-19", "address": " Rocha Cavalcante, R. Florianopolis - 720.", "profile":"../../assets/Ellipse 4.png"}],
-  "evento": [{  "id": 1,"name": "Evento", "description": "25/10/1999", "type": "705.986.894-19", "format": " Rocha Cavalcante, R. Florianopolis - 720.", "date":"../../assets/Ellipse 4.png","hours-init":"../../assets/Ellipse 4.png"}]
+  "profile": [
+    {
+      "id": 1,
+      "name": "Adriana Santos",
+      "birthday": "25/10/1999",
+      "cpf": "705.986.894-19",
+      "address": " Rocha Cavalcante, R. Florianopolis - 720.",
+      "profile": "../../assets/Ellipse 4.png"
+    }
+  ],
+  "evento": [
+    {
+      "id": 1,
+      "name": "Reunião",
+      "description": "Reunião do projeto mobile",
+      "type": "Online",
+      "format": "Reunião",
+      "date": "08/10",
+      "hours": "10:30h"
+    },
+    {
+      "id": 1,
+      "name": "Festa",
+      "description": "Festa de natal",
+      "type": "Rua das malvinas",
+      "format": "Festa",
+      "date": "25/12",
+      "hours": "10:30h"
+    }
+  ]
 }
