@@ -1,0 +1,20 @@
+<ion-app>
+  <ion-grid>
+    <img src="../../assets/login_img.svg" >
+    <div class="container-login">
+      <div class="container-input">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="username" class="input-login"></ion-input>
+        </ion-item>
+      </div>
+      <div class="container-input">
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input [(ngModel)]="password" class="input-login" ></ion-input>
+        </ion-item>
+      </div>
+      <ion-button style="--background:#5B4293" expand="block" (click)="login()">Login</ion-button>
+    </div>
+  </ion-grid>
+</ion-app>
