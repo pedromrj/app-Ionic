@@ -1,22 +1,18 @@
 
 <ion-content class="container">
-  
-  
   <div class="card">
       <img src="./../../assets/register-data.svg" alt="">
-
-      <ion-card>
+      <ion-card  >
         <ion-card-header>
-          <img src="../../assets/Ellipse 4.png" alt="">
-          <h5>Adriana Santos - 27 anos</h5>
-          <ion-card-subtitle>705.986.587-98</ion-card-subtitle>
+          <img src={{user.profile}} alt="">
+          <h5>{{user.name}} - </h5>
+          <h5>{{user.birthday}}</h5>
+          <ion-card-subtitle>{{user.cpf}}</ion-card-subtitle>
         </ion-card-header>
       
         <ion-card-content>
-         Rocha Cavalcante, R. Florianopolis - 720.
+          {{user.address}}
         </ion-card-content>
       </ion-card>
-
   </div>
-
 </ion-content>

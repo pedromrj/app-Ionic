@@ -1,9 +1,3 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "Adriana Santos", "birthday": "25/10/1999", "cpf": "705.986.894-19", "address": " Rocha Cavalcante, R. Florianopolis - 720."}
+    "profile": [{  "id": 1,"name": "Adriana Santos", "birthday": "25/10/1999", "cpf": "705.986.894-19", "address": " Rocha Cavalcante, R. Florianopolis - 720.", "profile":"../../assets/Ellipse 4.png"}]
   }

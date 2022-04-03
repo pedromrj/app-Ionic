@@ -9,7 +9,7 @@ export class RegistrionDataService {
 
   constructor(private http: HttpClient) {}
 
-  listar() {
+  getUser() {
     return this.http.get(this.url);
   }
 }

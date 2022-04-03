@@ -7,11 +7,11 @@ import { RegistrionDataService } from "../services/registrion-data.service";
   styleUrls: ["./registrion-data.page.scss"],
 })
 export class RegistrionDataPage implements OnInit {
-  constructor(private service: RegistrionDataService) {}
-
-  user: any;
-
-  ngOnInit(): void {
-    this.service.listar().subscribe((obj) => (this.user = obj));
+  constructor(private service: RegistrionDataService) {
+    this.service.getUser().subscribe((obj) => (this.user = obj[0]));
   }
+
+  user: any = [];
+
+  ngOnInit(): void {}
 }

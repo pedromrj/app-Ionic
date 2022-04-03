@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'registrion-data',
     loadChildren: () => import('./registrion-data/registrion-data.module').then( m => m.RegistrionDataPageModule)
   },
+  {
+    path: 'list-calender',
+    loadChildren: () => import('./list-calender/list-calender.module').then( m => m.ListCalenderPageModule)
+  },
 
 ];
 
