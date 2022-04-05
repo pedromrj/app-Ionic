@@ -1,0 +1,98 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: system-ui;
+}
+
+
+ion-content{
+    --background: #5B4293;
+}
+.card{
+    background-color: white;
+    width: 100vw;
+    height: 70vh;
+    border-top-right-radius: 35px;
+    border-top-left-radius: 35px;
+    position: absolute;
+    top: 31%;
+    display: flex;
+    flex-direction: column;
+    bottom: 0px;
+    justify-content: center;
+    align-items: center;
+
+    img{
+        position: absolute;
+        top: -26%;
+        width: 71vw;
+        left: 29%;
+    }
+
+    .card-info{
+        background: #eeeeee;
+        width: 85vw;
+        height: 19vh;
+        border-radius: 12px;
+        margin-top: 9%;
+        display: flex;
+        -webkit-box-shadow: -1px 7px 18px -2px #0000004d; 
+        box-shadow: -1px 7px 18px -2px #0000004d;
+
+        .hours{
+            width: 20vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            p{
+                margin-top: 11px;
+            }
+        }
+
+        .line{
+            background: #d8d7d7;
+            width: 0.5%;
+            height: 70%;
+            margin-top: 6%;
+        }
+
+        .info{
+            width: 59%;
+            margin-left: 5%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            .img-local{
+                width: 100%;
+                display: flex;
+
+                img{
+                    width: 5%;
+                    position: initial;
+                    display: flex;
+                    margin-right: 4%;
+                }
+            }
+        }
+
+        .action{
+            width: 17vw;
+            margin-left: 5%;
+            img{
+                width: 49%;
+                position: initial;
+                display: flex;
+                margin-top: 31%;
+            }
+
+            button{
+                width: 100%;
+            }
+        }
+    }
+}
+

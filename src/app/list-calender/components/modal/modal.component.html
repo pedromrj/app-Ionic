@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nome do evento</ion-label>
+    <ion-input [(ngModel)]="name" [required]="true" [disabled]="disabledInput()"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descrição do evento</ion-label>
+    <ion-input
+      [(ngModel)]="description"
+      [disabled]="disabledInput()"
+      [required]="true"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Tipo</ion-label>
+    <ion-input [required]="true" [(ngModel)]="type" [disabled]="disabledInput()"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Formato</ion-label>
+    <ion-input [required]="true" [(ngModel)]="format" [disabled]="disabledInput()"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <input [required]="true" [(ngModel)]="date" type="date" [disabled]="disabledInput()" />
+  </ion-item>
+  <ion-item>
+    <input [required]="true" [(ngModel)]="hour" type="time" [disabled]="disabledInput()" />
+  </ion-item>
+  <div class="buttons">
+    <ion-button class="back" style="--background: #5b4293" (click)="cancelModal()"
+      >Voltar</ion-button
+    >
+    <ion-button
+      style="--background: #5b4293"
+      (click)="createUpdateCalendar()"
+      [disabled]="disabledInput()"
+      >Salvar Evento</ion-button
+    >
+  </div>
+</ion-content>

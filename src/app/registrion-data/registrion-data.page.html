@@ -1,0 +1,44 @@
+
+<ion-content class="container">
+  <div class="menu">
+    <ion-menu  class="menu" side="start" content-id="main-content">
+      <ion-content style="--background:#fff">
+        <ion-list>
+          <ion-item>
+            <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+            <ion-label>Dados Cadastrais</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-label (click)="goToListCalendar()">Meus Eventos</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+  
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar style="--background:#5B4293">
+          <ion-buttons slot="start">
+            <ion-menu-button style="color:#fff"></ion-menu-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    </div>
+  </div>
+  <div class="card">
+      <img src="./../../assets/register-data.svg" alt="">
+      <ion-card  >
+        <ion-card-header>
+          <img src={{user.profile}} alt="">
+          <h5>{{user.name}} - </h5>
+          <h5>{{user.birthday}}</h5>
+          <ion-card-subtitle>{{user.cpf}}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{user.address}}
+        </ion-card-content>
+      </ion-card>
+  </div>
+</ion-content>
