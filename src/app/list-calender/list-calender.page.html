@@ -1,39 +1,64 @@
-
-<ion-content class="container">
-  <div class="card">
-      <img src="./../../assets/list-calender.svg" alt="">
-
-      <div class="card-info">
-        <div class="hours">
-          <h6>15:30h</h6>
-          <p>17:00h</p>
-        </div>
-        <div class="line"></div>
-        <div class="info">
-          <h5>Evento</h5>
-          <p>Descição do evento</p>
-          <div class="img-local">
-            <img src="../../assets/local.png" alt="">
-            <p>local</p>
-          </div>
-        </div>
-
-        <div class="action">
-          <button>
-            <img src="../../assets/Edit.png" alt="">
-          </button>
-          <button>
-            <img src="../../assets/Delete.png" alt="">
-          </button>
-         
-        </div>
-
-        <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
-          <ion-fab-button (click)="openModal()">
-            <ion-icon name="add"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
+  <ion-content class="container">
+    <div class="menu">
+      <ion-menu  class="menu" side="start" content-id="main-content">
+        <ion-content style="--background:#fff">
+          <ion-list>
+            <ion-item>
+              <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+              <ion-label (click)="goToRegistrionData()">Dados Cadastrais</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="calendar-outline" slot="start"></ion-icon>
+              <ion-label>Meus Eventos</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+    
+      <div class="ion-page" id="main-content">
+        <ion-header>
+          <ion-toolbar style="--background:#5B4293">
+            <ion-buttons slot="start">
+              <ion-menu-button style="color:#fff"></ion-menu-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
       </div>
-     
+    </div>
+  <div class="card">
+    <img src="./../../assets/list-calender.svg" alt="" />
+    <h1>EVENTOS</h1>
+    <div *ngFor="let evento of eventos" class="card-info">
+      <div class="hours">
+        <h6>{{evento.hours}}</h6>
+        <p>{{evento.date}}</p>
+      </div>
+      <div class="line"></div>
+      <div class="info">
+        <h5>{{evento.name}}</h5>
+        <p>{{evento.description}}</p>
+        <div class="img-local">
+          <img src="../../assets/local.png" alt="" />
+          <p>{{evento.type}}</p>
+        </div>
+      </div>
+
+      <div class="action">
+        <button (click)="view(evento.id)">
+          <img src="../../assets/Eye.png" alt="" />
+        </button>
+        <button (click)="edit(evento.id)">
+          <img src="../../assets/Edit.png" alt="" />
+        </button>
+        <button (click)="delete(evento.id)">
+          <img src="../../assets/Delete.png" alt="" />
+        </button>
+      </div>
+    </div>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button style="--background:#5B4293" (click)="openModal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </div>
 </ion-content>

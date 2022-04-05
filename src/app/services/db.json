@@ -1,3 +1,5 @@
 {
-    "profile": [{  "id": 1,"name": "Adriana Santos", "birthday": "25/10/1999", "cpf": "705.986.894-19", "address": " Rocha Cavalcante, R. Florianopolis - 720.", "profile":"../../assets/Ellipse 4.png"}]
+    "profile": [{  "id": 1,"name": "Adriana Santos", "birthday": "25/10/1999", "cpf": "705.986.894-19", "address": " Rocha Cavalcante, R. Florianopolis - 720.", "profile":"../../assets/Ellipse 4.png"}],
+    "evento": [{  "id": 1,"name": "Evento", "description": "Descrição do evento", "type": "R. Florianopolis - 720", "format": "Festa", "date":"25/10","hours":"15:30h"},
+      {  "id": 1,"name": "Reunião", "description": "Reunião do projeto mobile", "type": "Online", "format": "Reunião", "date":"08/10","hours":"10:30h"}]
   }
