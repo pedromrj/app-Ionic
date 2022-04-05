@@ -71,6 +71,7 @@ export class ModalComponent implements OnInit {
           this.modalCtr.dismiss();
 
       }
+      this.modalCtr.dismiss();
     } catch {
       this.presentToast("Algum campo obrigatorio está preenchido errado")
     }
