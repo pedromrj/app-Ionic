@@ -1,3 +1,4 @@
+import { ModalComponent } from './components/modal/modal.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,6 @@ import { ListCalenderPage } from './list-calender.page';
     IonicModule,
     ListCalenderPageRoutingModule
   ],
-  declarations: [ListCalenderPage]
+  declarations: [ListCalenderPage,ModalComponent]
 })
 export class ListCalenderPageModule {}
