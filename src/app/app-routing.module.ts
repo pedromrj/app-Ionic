@@ -15,7 +15,10 @@ const routes: Routes = [
     path: 'list-calender',
     loadChildren: () => import('./list-calender/list-calender.module').then( m => m.ListCalenderPageModule)
   },
-
+  {
+    path: 'registrion-data',
+    loadChildren: () => import('./registrion-data/registrion-data.module').then( m => m.RegistrionDataPageModule)
+  },
 ];
 
 @NgModule({
@@ -23,6 +26,5 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
   exports: [RouterModule],
-  
 })
 export class AppRoutingModule {}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../../service/login.service';
+import { LoginService } from '../../services/login.service';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
@@ -23,18 +23,20 @@ export class LoginPage {
 
 
   login() {
-    
+
     if (!this.username || !this.password) {
       this.presentToast("Por favor digitar usuario ou senha!");
     } else {
       this.service.findUser(this.username).subscribe( response => {
+        console.log(response);
+
         if (response && response.length > 0 && response[0].password === this.password) {
-          this.router.navigate(["/home", { id : response[0].id }] );
+          this.router.navigate(["/registrion-data"] );
         } else {
           this.presentToast("Senha incorreta!");
         }
       }, error => {
-        console.log(error)
+        console.log(error);
       });
     }
   }
