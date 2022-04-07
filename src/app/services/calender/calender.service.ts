@@ -19,12 +19,12 @@ export class CalenderService {
   }
 
   update(id ,event) {
-    return this.http.put(`${this.url}/${id}`,event)
+    return this.http.put(`${this.url}/${id}`,event);
 
   }
 
   creteEvent(event) {
-    return this.http.post(this.url,event)
+    return this.http.post(this.url,event);
 
   }
 

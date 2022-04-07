@@ -15,7 +15,7 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-  
+
     <div class="ion-page" id="main-content">
       <ion-header>
         <ion-toolbar style="--background:#5B4293">
@@ -32,10 +32,10 @@
         <ion-card-header>
           <img src={{user.profile}} alt="">
           <h5>{{user.name}} - </h5>
-          <h5>{{user.birthday}}</h5>
+          <h5>{{getAge(user.birthday)}} Anos</h5>
           <ion-card-subtitle>{{user.cpf}}</ion-card-subtitle>
         </ion-card-header>
-      
+
         <ion-card-content>
           {{user.address}}
         </ion-card-content>
