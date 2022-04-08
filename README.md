@@ -2,7 +2,7 @@
 App para disciplina de mobile
 
 
-# Usuarios Para logar no site
+# Usuarios Para logar no App
 username:pedro@gmail.com
 password 123
 
