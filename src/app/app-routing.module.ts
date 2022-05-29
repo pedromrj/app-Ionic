@@ -12,11 +12,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'list-calender',
+    path: 'list-calender/:id',
     loadChildren: () => import('./list-calender/list-calender.module').then( m => m.ListCalenderPageModule)
   },
   {
-    path: 'registrion-data',
+    path: 'registrion-data/:id',
     loadChildren: () => import('./registrion-data/registrion-data.module').then( m => m.RegistrionDataPageModule)
   },
 ];

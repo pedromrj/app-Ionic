@@ -1,6 +1,7 @@
 import { CalenderService } from "./../../../services/calender/calender.service";
 import { ModalController, ToastController } from "@ionic/angular";
 import { Component, Input, OnInit } from "@angular/core";
+import { Evento } from "src/app/modals/Evento";
 
 @Component({
   selector: "app-modal",
@@ -50,24 +51,23 @@ export class ModalComponent implements OnInit {
             date: dateFormat,
             year: splitDate[0],
             hours: this.hour,
-          })
-          .subscribe((e) => console.log(e));
+          });
       } else {
         let dateFormat;
         let splitDate = this.date.split("-");
         dateFormat = splitDate[2] + "/" + splitDate[1];
 
         this.service
-          .creteEvent({
-            name: this.name,
-            description: this.description,
-            type: this.type,
-            format: this.format,
-            date: dateFormat,
-            year: splitDate[0],
-            hours: this.hour,
-          })
-          .subscribe((e) => console.log(e));
+          .creteEvent(new Evento (
+            this.hour,
+            dateFormat,
+            this.name,
+            this.description,
+            this.type,
+            this.format,
+            splitDate[0]
+          ));
+          
           this.modalCtr.dismiss();
 
       }
@@ -91,15 +91,18 @@ export class ModalComponent implements OnInit {
   }
 
   private getEventById() {
-    this.service.getEventById(this.eventId).subscribe((data: any) => {
-      let dateSplit = data.date.split("/");
-      let dateFormat = data.year + "-" + dateSplit[1] + "-" + dateSplit[0];
-      this.name = data.name;
-      this.description = data.description;
-      this.type = data.type;
-      this.format = data.format;
+    let event = this.service.getEventById(this.eventId);
+    event.snapshotChanges().subscribe( res => {
+      let eve = res.payload.toJSON() as Evento;
+      let dateSplit = eve.date.split("/");
+      let dateFormat = eve.year + "-" + dateSplit[1] + "-" + dateSplit[0];
+      this.name = eve.name;
+      this.description = eve.discription;
+      this.type = eve.type;
+      this.format = eve.format;
       this.date = dateFormat;
-      this.hour = data.hours;
+      this.hour = eve.hours;
     });
+    
   }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ModalController } from '@ionic/angular';
 import { ModalComponent } from './components/modal/modal.component';
 import { CalenderService } from "../services/calender/calender.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Evento } from "../modals/Evento";
 
 @Component({
   selector: "app-list-calender",
@@ -11,19 +12,19 @@ import { Router } from "@angular/router";
 })
 export class ListCalenderPage implements OnInit {
   eventos;
-
-  constructor(private service:CalenderService , private modalCtrl: ModalController, private router: Router) {
+  
+  constructor(private service:CalenderService , private modalCtrl: ModalController, private router: Router, private actrouter: ActivatedRoute) {
     this.get();
   }
 
   ngOnInit(): void {}
 
   goToRegistrionData() {
-    this.router.navigate(["/registrion-data"])
+    this.router.navigate(["/registrion-data", this.actrouter.snapshot.paramMap.get("id")])
   }
 
   delete(eventoId: any) {
-    this.service.deleteEvento(eventoId).subscribe((e) => this.get());
+    this.service.deleteEvento(this.actrouter.snapshot.paramMap.get("id"));
   }
 
   async openModal() {
@@ -61,6 +62,14 @@ export class ListCalenderPage implements OnInit {
     await modal.present();
   }
   private get() {
-    this.service.getEvento().subscribe((obj) => (this.eventos = obj));
+    let eventoList = this.service.getEvento();
+    eventoList.snapshotChanges().subscribe(res => {
+      this.eventos = [];
+      res.forEach(item => {
+        let a = item.payload.toJSON();
+        a["$key"] = item.key;
+        this.eventos.push(a as Evento);
+      })
+    })
   }
 }

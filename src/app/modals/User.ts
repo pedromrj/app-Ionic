@@ -1,5 +1,5 @@
 export class User {
-    public id: number;
+    public $key: string;
     public username: string;
     public password: string;
 }

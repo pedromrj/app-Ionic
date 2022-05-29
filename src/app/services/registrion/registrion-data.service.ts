@@ -1,5 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { UserInfo } from "../../modals/UserInfo";
+import {
+  AngularFireDatabase,
+  AngularFireList,
+  AngularFireObject
+} from "@angular/fire/compat/database";
 
 @Injectable({
   providedIn: "root",
@@ -7,9 +13,12 @@ import { HttpClient } from "@angular/common/http";
 export class RegistrionDataService {
   private readonly url = "http://localhost:3000/profile";
 
-  constructor(private http: HttpClient) {}
+  private object: AngularFireObject<UserInfo>;
 
-  getUser() {
-    return this.http.get(this.url);
+  constructor(private db: AngularFireDatabase) {}
+
+  getUser(id) {
+    this.object = this.db.object<UserInfo>("/registrion-data/"+ id);
+    return this.object;
   }
 }

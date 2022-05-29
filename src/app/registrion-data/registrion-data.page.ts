@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { RegistrionDataService } from "../services/registrion/registrion-data.service";
 
 @Component({
@@ -8,14 +8,19 @@ import { RegistrionDataService } from "../services/registrion/registrion-data.se
   styleUrls: ["./registrion-data.page.scss"],
 })
 export class RegistrionDataPage implements OnInit {
-  constructor(private service: RegistrionDataService, private router: Router) {
-    this.service.getUser().subscribe((obj) => (this.user = obj[0]));
+  constructor(private service: RegistrionDataService, private router: Router, public activerouter: ActivatedRoute) {
+    
+    let userList = this.service.getUser(activerouter.snapshot.paramMap.get("id"));
+
+    userList.snapshotChanges().subscribe(res => {
+      this.user.push(res.payload.toJSON());
+    })
   }
 
   user: any = [];
 
   goToListCalendar() {
-    this.router.navigate(["/list-calender"])
+    this.router.navigate(["/list-calender", this.activerouter.snapshot.paramMap.get("id") ])
   }
 
   getAge(dateString) {

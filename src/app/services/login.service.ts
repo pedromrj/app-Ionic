@@ -3,21 +3,25 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../modals/User';
 
+import {
+  AngularFireDatabase,
+  AngularFireList,
+  AngularFireObject
+} from "@angular/fire/compat/database";
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  host = "http://localhost:3000";
-  endpoint = "/user";
-  constructor(public http: HttpClient) { }
+  private list: AngularFireList<User>;
+
+  constructor(private db: AngularFireDatabase) { }
 
 
-  findUser(username):Observable<Array<User>> {
-    let httpOptions = {
-      headers : new HttpHeaders({"Content-Type" : "application/json"})
-    }
-    return this.http.get<Array<User>>(`${this.host}${this.endpoint}?username=${username}`, httpOptions);
+  findUser() {
+    this.list = this.db.list<User>("/user");
+    return this.list;
   }
 
 

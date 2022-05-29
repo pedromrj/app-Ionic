@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { ToastController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
 
 import { Router } from '@angular/router';
+import { User } from 'src/app/modals/User';
 
 @Component({
   selector: 'app-home',
@@ -12,34 +12,52 @@ import { Router } from '@angular/router';
 })
 export class LoginPage {
 
-  username: string;
-  password: string;
-
   constructor(
     public service: LoginService,
     public toastController: ToastController,
     private router: Router) {
   }
 
+  username: string;
+  password: string;
+  Users = [];
+  user: User;
+
+
+  
+
 
   login() {
+    let userList = this.service.findUser();
+    
+    userList.snapshotChanges().subscribe(res => {
+      this.Users = [];
+      res.forEach(item => {
+        let a = item.payload.toJSON();
+        if (a["username"] === this.username) {
+          this.Users.push(a as User);
+        }
+      })
+    })
 
-    if (!this.username || !this.password) {
+    if (this.Users.length == 0) {
+      this.presentToast("Usuario não cadastrado!");
+    }
+
+    this.user = this.Users[0];
+
+    if (!this.user.username || !this.user.password) {
       this.presentToast("Por favor digitar usuario ou senha!");
     } else {
-      this.service.findUser(this.username).subscribe( response => {
-        console.log(response);
 
-        if (response && response.length > 0 && response[0].password === this.password) {
-          this.router.navigate(["/registrion-data"] );
+        if (this.user.password === this.password) {
+          this.router.navigate(["/registrion-data/", this.user.$key] );
         } else {
           this.presentToast("Senha incorreta!");
         }
-      }, error => {
-        console.log(error);
-      });
+      }
     }
-  }
+  
 
   async presentToast(msg) {
     const toast = await this.toastController.create({
@@ -49,5 +67,4 @@ export class LoginPage {
     });
     toast.present();
   }
-
 }

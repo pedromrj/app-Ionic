@@ -1,34 +1,59 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+
+import {
+  AngularFireDatabase,
+  AngularFireList,
+  AngularFireObject
+} from "@angular/fire/compat/database";
+import { Evento } from "src/app/modals/Evento";
 
 @Injectable({
   providedIn: "root",
 })
 export class CalenderService {
-  private readonly url = "http://localhost:3000/evento";
 
-  constructor(private http: HttpClient) {}
+  private list: AngularFireList<Evento>;
+  private obj: AngularFireObject<Evento>;
+
+  constructor(private db: AngularFireDatabase) {}
 
   getEvento() {
-    return this.http.get(this.url);
+    this.list = this.db.list<Evento>("/evento");
+    return this.list;
   }
 
   getEventById(id) {
-    return this.http.get(`${this.url}/${id}`);
-
+    this.obj = this.db.object<Evento>("/evento/" + id);
+    return this.obj;
   }
 
   update(id ,event) {
-    return this.http.put(`${this.url}/${id}`,event);
-
+    return this.obj.update(new Evento (
+      event.hours,
+      event.date,
+      event.name,
+      event.discription,
+      event.type,
+      event.format,
+      event.year
+    ))
   }
 
-  creteEvent(event) {
-    return this.http.post(this.url,event);
-
+  creteEvent(event: Evento) {
+    this.list = this.db.list<Evento>("/evento");
+    return this.list.push(new Evento (
+      event.hours,
+      event.date,
+      event.name,
+      event.discription,
+      event.type,
+      event.format,
+      event.year
+    ))
   }
 
   deleteEvento(id) {
-    return this.http.delete(`${this.url}/${id}`);
+    this.obj = this.db.object("/evento/" + id);
+    this.obj.remove();
   }
 }
