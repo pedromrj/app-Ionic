@@ -30,14 +30,14 @@
       <img src="./../../assets/register-data.svg" alt="">
       <ion-card  >
         <ion-card-header>
-          <img src={{user.profile}} alt="">
-          <h5>{{user.name}} - </h5>
-          <h5>{{getAge(user.birthday)}} Anos</h5>
-          <ion-card-subtitle>{{user.cpf}}</ion-card-subtitle>
+          <img src={{user[0]?.profile}} alt="">
+          <h5>{{user[0]?.name}} - </h5>
+          <h5>{{getAge(user[0]?.birthday)}} Anos</h5>
+          <ion-card-subtitle>{{user[0]?.cpf}}</ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content>
-          {{user.address}}
+          {{user[0]?.address}}
         </ion-card-content>
       </ion-card>
   </div>

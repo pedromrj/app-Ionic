@@ -1,26 +1,36 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { RegistrionDataService } from "../services/registrion/registrion-data.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RegistrionDataService } from '../services/registrion/registrion-data.service';
 
 @Component({
-  selector: "app-registrion-data",
-  templateUrl: "./registrion-data.page.html",
-  styleUrls: ["./registrion-data.page.scss"],
+  selector: 'app-registrion-data',
+  templateUrl: './registrion-data.page.html',
+  styleUrls: ['./registrion-data.page.scss'],
 })
 export class RegistrionDataPage implements OnInit {
-  constructor(private service: RegistrionDataService, private router: Router, public activerouter: ActivatedRoute) {
-    
-    let userList = this.service.getUser(activerouter.snapshot.paramMap.get("id"));
+  constructor(
+    private service: RegistrionDataService,
+    private router: Router,
+    public activerouter: ActivatedRoute
+  ) {}
 
-    userList.snapshotChanges().subscribe(res => {
+  ngOnInit(): void {
+    let userList = this.service.getUser(
+      this.activerouter.snapshot.paramMap.get('id')
+    );
+
+    userList.snapshotChanges().subscribe((res) => {
       this.user.push(res.payload.toJSON());
-    })
+    });
   }
 
   user: any = [];
 
   goToListCalendar() {
-    this.router.navigate(["/list-calender", this.activerouter.snapshot.paramMap.get("id") ])
+    this.router.navigate([
+      '/list-calender',
+      this.activerouter.snapshot.paramMap.get('id'),
+    ]);
   }
 
   getAge(dateString) {
@@ -28,14 +38,10 @@ export class RegistrionDataPage implements OnInit {
     var birthDate = new Date(dateString);
     var age = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
-    console.log(age);
 
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
-    {
-        age--;
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
     }
     return age;
-}
-
-  ngOnInit(): void {}
+  }
 }

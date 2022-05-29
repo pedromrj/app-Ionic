@@ -32,10 +32,11 @@ export class CalenderService {
       event.hours,
       event.date,
       event.name,
-      event.discription,
+      event.description,
       event.type,
       event.format,
-      event.year
+      event.year,
+      event.userID
     ))
   }
 
@@ -45,10 +46,11 @@ export class CalenderService {
       event.hours,
       event.date,
       event.name,
-      event.discription,
+      event.description,
       event.type,
       event.format,
-      event.year
+      event.year,
+      event.userID
     ))
   }
 
