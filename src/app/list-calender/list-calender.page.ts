@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { ModalComponent } from './components/modal/modal.component';
 import { CalenderService } from '../services/calender/calender.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,8 +17,8 @@ export class ListCalenderPage implements OnInit {
     private service: CalenderService,
     private modalCtrl: ModalController,
     private router: Router,
-    private actrouter: ActivatedRoute,
-    public activerouter: ActivatedRoute
+    public activerouter: ActivatedRoute,
+    public alertController: AlertController
   ) {
     this.get();
   }
@@ -28,12 +28,37 @@ export class ListCalenderPage implements OnInit {
   goToRegistrionData() {
     this.router.navigate([
       '/registrion-data',
-      this.actrouter.snapshot.paramMap.get('id'),
+      this.activerouter.snapshot.paramMap.get('id'),
     ]);
   }
 
   delete(eventoId: any) {
-    this.service.deleteEvento(eventoId);
+    this.presentAlertConfirm(eventoId);
+  }
+
+  async presentAlertConfirm(eventoId) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta!',
+      message: 'Gostaria de remover?',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: (blah) => {}
+        }, {
+          text: 'Sim',
+          id: 'confirm-button',
+          handler: () => {
+            this.service.deleteEvento(eventoId);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   async openModal() {
